@@ -14,6 +14,12 @@ class DecisionsTree extends StatefulWidget {
 class _DecisionsTreeState extends State<DecisionsTree> {
   User? user;
 
+  @override
+  void initState() {
+    super.initState();
+    onRefresh(FirebaseAuth.instance.currentUser);
+  }
+
   onRefresh(userCred) {
     setState(() {
       user = userCred;
