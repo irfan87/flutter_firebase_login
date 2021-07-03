@@ -30,7 +30,7 @@ class _DecisionsTreeState extends State<DecisionsTree> {
   Widget build(BuildContext context) {
     if (user == null) {
       return LoginPage(
-        onSignInAnonymously: (userCred) => onRefresh(userCred),
+        onSignIn: (userCred) => onRefresh(userCred),
       );
     }
 
