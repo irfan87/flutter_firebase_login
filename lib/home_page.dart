@@ -19,9 +19,13 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
-        child: TextButton(
-          child: const Text("Log out"),
-          onPressed: () => logOut(),
+        child: Column(
+          children: [
+            TextButton(
+              child: const Text("Log out"),
+              onPressed: () => logOut(),
+            ),
+          ],
         ),
       ),
     );
