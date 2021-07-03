@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   String? error = "";
+  bool isLogin = true;
 
   Future<void> loginAsAnon() async {
     UserCredential userCredential =
@@ -30,6 +31,22 @@ class _LoginPageState extends State<LoginPage> {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      widget.onSignIn(userCredential.user);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        error = e.message;
+      });
+    }
+  }
+
+  Future<void> loginUser() async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
@@ -64,12 +81,22 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: [
                 ElevatedButton(
-                  onPressed: () => createUser(),
-                  child: const Text("Create User"),
+                  onPressed: () {
+                    isLogin ? loginUser() : createUser();
+                  },
+                  child: Text(isLogin ? "Login" : "Create User"),
                 ),
                 ElevatedButton(
                   child: const Text("Sign in as Anonymous"),
                   onPressed: () => loginAsAnon(),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      isLogin = !isLogin;
+                    });
+                  },
+                  child: Text("Switch to Login / Create account"),
                 ),
               ],
             ),
