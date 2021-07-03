@@ -8,7 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(FirebaseLoginApp());
+  runApp(const FirebaseLoginApp());
 }
 
 class FirebaseLoginApp extends StatelessWidget {
@@ -16,7 +16,7 @@ class FirebaseLoginApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DecisionsTree(),
     );
