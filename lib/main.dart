@@ -4,7 +4,7 @@ import 'package:flutter_firebase_login/decisions_tree.dart';
 // firebase stuff
 import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
