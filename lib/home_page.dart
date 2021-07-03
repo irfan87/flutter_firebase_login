@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final Function(User?) onSignOut;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  HomePage({required this.onSignOut});
 
-class _HomePageState extends State<HomePage> {
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+    onSignOut(null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(20.0),
         child: TextButton(
           child: const Text("Log out"),
-          onPressed: () {},
+          onPressed: () => logOut(),
         ),
       ),
     );
