@@ -34,7 +34,9 @@ class _DecisionsTreeState extends State<DecisionsTree> {
       );
     }
 
-    return const HomePage();
+    return HomePage(
+      onSignOut: (userCred) => onRefresh(userCred),
+    );
 
     // return LoginPage();
   }

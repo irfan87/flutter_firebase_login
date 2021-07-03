@@ -7,7 +7,7 @@ class LoginPage extends StatelessWidget {
   const LoginPage({Key? key, required this.onSignInAnonymously})
       : super(key: key);
 
-  loginAsAnon() async {
+  Future<void> loginAsAnon() async {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInAnonymously();
 
